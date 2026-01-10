@@ -1,0 +1,197 @@
+/* Estilos para la página de Inventario */
+.inventario-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  min-height: 100vh;
+}
+
+.inventario-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #b71c1c;
+  font-size: 2.5em;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔍 FILTROS */
+.filtros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  align-items: stretch;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Campo individual */
+.campo {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+/* Label */
+.campo label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #495057;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  height: 18px;
+}
+
+/* Inputs y selects */
+.campo select,
+.campo input {
+  height: 48px;
+  padding: 10px 14px;
+  border: 2px solid #ced4da;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+  text-align: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.campo select:focus,
+.campo input:focus {
+  outline: none;
+  border-color: #b71c1c;
+  box-shadow: 0 0 0 3px rgba(183, 28, 28, 0.1);
+}
+
+/* Botones */
+.botones-filtro {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-filtrar,
+.btn-limpiar {
+  height: 48px;
+  padding: 0 22px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+.btn-filtrar {
+  background: linear-gradient(135deg, #b71c1c 0%, #8b0000 100%);
+  color: white;
+}   
+
+/* ====== TABLA ====== */
+.tabla-scroll {
+  width: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  border: 3px solid #b71c1c;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  margin-top: 20px;
+  background: white;
+}
+
+#tablaMobiliario {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+}
+
+#tablaMobiliario th,
+#tablaMobiliario td {
+  padding: 12px 16px;
+  border-bottom: 2px solid #f1f3f4;
+  text-align: left;
+  font-size: 14px;
+}
+
+/* Encabezado fijo */
+#tablaMobiliario thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #b71c1c 0%, #8b0000 100%);
+  color: white;
+  z-index: 2;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Efecto hover en filas */
+#tablaMobiliario tbody tr:hover {
+  background: linear-gradient(135deg, #fff3f3 0%, #ffebee 100%);
+  transform: scale(1.01);
+  transition: all 0.2s ease;
+}
+
+/* ====== BOTONES DE ACCIÓN ====== */
+.editar,
+.eliminar,
+.inservible {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.editar {
+  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+  color: #333;
+}
+
+.eliminar,
+.inservible {
+  background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+  color: white;
+}
+
+.editar:hover {
+  background: linear-gradient(135deg, #e0a800 0%, #d39e00 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.eliminar:hover,
+.inservible:hover {
+  background: linear-gradient(135deg, #b71c1c 0%, #8b0000 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para botones deshabilitados */
+.editar:disabled,
+.eliminar:disabled,
+.inservible:disabled {
+  background: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}

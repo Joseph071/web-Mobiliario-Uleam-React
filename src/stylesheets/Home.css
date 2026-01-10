@@ -1,0 +1,60 @@
+
+.main-home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 30px;
+}
+
+/* ======== SECCIÓN BIENVENIDA ======== */
+.home {
+  background: white;
+  padding: 50px 60px;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  max-width: 650px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.home:hover {
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+}
+
+.dashboard h1 {
+  margin-bottom: 20px;
+  color: #8b0000; /* Rojo vino elegante */
+  font-weight: 600;
+}
+
+.home h2 {
+  color: #b71c1c;
+  margin-bottom: 18px;
+  font-size: 1.7em;
+}
+
+.home p {
+  line-height: 1.7;
+  margin: 10px 0;
+  color: #444;
+}
+
+
+.btn-inventario {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 26px;
+  background-color: #b71c1c;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 6px rgba(183, 28, 28, 0.2);
+}
+
+.btn-inventario:hover {
+  background-color: #8e1414;
+  box-shadow: 0 4px 10px rgba(183, 28, 28, 0.3);
+}

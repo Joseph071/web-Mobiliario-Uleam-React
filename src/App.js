@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import Login from './pages/login';
+import Home from './pages/home';
+import Inventario from './pages/inventario';
+import Registro from './pages/registro';  
+import Registrar from './pages/registrar';
+import { useEffect } from 'react';
+
+import { inicializarUsuariosPorDefecto } from "./componentes/store/usuarios";
+import { inicializarMobiliariosPorDefecto } from "./componentes/store/mobiliarios";
 
 function App() {
+
+  useEffect(() => {
+    inicializarUsuariosPorDefecto();
+    inicializarMobiliariosPorDefecto()
+  }, []);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes> 
+      <Route path="/" element={<Login />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/inventario" element={<Inventario />} />
+      <Route path="/registro" element={<Registro />} />
+      <Route path="/registrar" element={<Registrar />} />
+      
+    </Routes>
+
   );
 }
 

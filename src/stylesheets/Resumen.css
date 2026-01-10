@@ -1,0 +1,34 @@
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.resumen-container {
+  background: linear-gradient(180deg, #fff7f7 0%, #ffffff 100%);
+  border: 1px solid #f3dcdc;
+  padding: 18px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resumen-container:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(183, 28, 28, 0.1);
+}
+
+.titulo {
+  font-weight: 700;
+  color: #b71c1c;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+.resumen-content {
+  font-size: 26px;
+  font-weight: 800;
+  color: #222;
+}

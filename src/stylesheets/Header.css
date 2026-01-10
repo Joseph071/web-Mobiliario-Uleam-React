@@ -1,0 +1,56 @@
+header {
+  background: linear-gradient(90deg, #b71c1c, #d32f2f);
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+h1 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 1.8em;
+  letter-spacing: 0.5px;
+}
+
+.logo-h1 {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+
+  padding: 4px;
+  background: white;
+  object-fit: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ======== MENÚ DE NAVEGACIÓN ======== */
+nav ul {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
