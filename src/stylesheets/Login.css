@@ -1,14 +1,10 @@
-
 .login-container {
   background: #ffffff;
   padding: 40px 70px;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   width: 400px;
-  text-align: center; 
-  margin: auto;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 .logo {
