@@ -28,6 +28,7 @@ function Login() {
   };
 
   return (
+  <div className="login">
     <div className="login-container">
       <img className="logo" src={logo} alt="ULEAM Logo" />
 
@@ -66,6 +67,8 @@ function Login() {
         </p>
       </div>
     </div>
+  </div>
+      
   );
 }
 
