@@ -1,17 +1,40 @@
+// Hooks de React para manejar estado y efectos secundarios
 import { useState, useEffect } from "react";
+
+// Componentes reutilizables
 import HeaderComp from "../componentes/header";
-import { obtenerMobiliarios, actualizarMobiliario, buscarMobiliarioPorCodigo } from "../componentes/store/mobiliarios";
 import Modal from "../componentes/modal";
+
+// Funciones del store para manejar mobiliarios
+import {
+  obtenerMobiliarios,
+  actualizarMobiliario,
+  buscarMobiliarioPorCodigo
+} from "../componentes/store/mobiliarios";
+
+// Estilos CSS
 import "../stylesheets/Inventario.css";
 import "../stylesheets/Modal.css";
 import "../stylesheets/Registrar.css";
+
+// Función de validación
 import { validarMobiliario } from "../componentes/validaciones/validaMobiliarios";
 
 function Inventario() {
+
+  // Lista completa de mobiliarios
   const [mobiliarios, setMobiliarios] = useState([]);
+
+  // Lista filtrada que se muestra en la tabla
   const [filteredMobiliarios, setFilteredMobiliarios] = useState([]);
+
+  // Control del modal
   const [showModal, setShowModal] = useState(false);
+
+  // Mobiliario seleccionado para editar
   const [selectedMobiliario, setSelectedMobiliario] = useState(null);
+
+   // Estado del formulario de edición
   const [form, setForm] = useState({
     codigo: "",
     nombre: "",
@@ -24,6 +47,8 @@ function Inventario() {
     enUso: "",
     mantenimiento: "",
   });
+
+  // Estado de los filtros
   const [filtros, setFiltros] = useState({
     estado: "",
     facultad: "",
@@ -31,29 +56,39 @@ function Inventario() {
     tipo: "",
   });
 
+  // Cargar mobiliarios al iniciar el componente
   useEffect(() => {
     const mobs = obtenerMobiliarios();
     setMobiliarios(mobs);
     setFilteredMobiliarios(mobs);
   }, []);
 
+    // Aplica los filtros seleccionados
   const aplicarFiltros = () => {
     let filtered = mobiliarios;
+
     if (filtros.estado) {
       filtered = filtered.filter(m => m.estado === filtros.estado);
     }
+
     if (filtros.facultad) {
       filtered = filtered.filter(m => m.facultad === filtros.facultad);
     }
+
     if (filtros.edificio) {
-      filtered = filtered.filter(m => m.edificio.toLowerCase().includes(filtros.edificio.toLowerCase()));
+      filtered = filtered.filter(m =>
+        m.edificio.toLowerCase().includes(filtros.edificio.toLowerCase())
+      );
     }
+
     if (filtros.tipo) {
       filtered = filtered.filter(m => m.tipo === filtros.tipo);
     }
+
     setFilteredMobiliarios(filtered);
   };
 
+  // Limpia filtros y muestra todos los registros
   const limpiarFiltros = () => {
     setFiltros({
       estado: "",
@@ -64,6 +99,7 @@ function Inventario() {
     setFilteredMobiliarios(mobiliarios);
   };
 
+  // Maneja cambios en los filtros
   const handleFiltroChange = (e) => {
     setFiltros({
       ...filtros,
@@ -71,21 +107,27 @@ function Inventario() {
     });
   };
 
+   // Abre el modal con el mobiliario seleccionado
   const openModal = (mobiliario) => {
     setSelectedMobiliario(mobiliario);
     setForm({ ...mobiliario });
     setShowModal(true);
   };
 
+  // Cierra el modal
   const closeModal = () => {
     setShowModal(false);
     setSelectedMobiliario(null);
+    
   };
+  
 
+  // Restaura los datos originales del formulario
   const handleClear = () => {
     setForm({ ...selectedMobiliario });
   };
 
+  // Maneja cambios en el formulario
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -94,24 +136,43 @@ function Inventario() {
   };
 
   const saveChanges = () => {
-    const error = validarMobiliario(form, true);
-    if (error) {
-      alert(error);
-      return;
-    }
-    actualizarMobiliario(form);
-    const updatedMobs = obtenerMobiliarios();
-    setMobiliarios(updatedMobs);
-    aplicarFiltros(); // Reaplicar filtros
-    closeModal();
-  };
+  const error = validarMobiliario(form, true);
 
+  if (error) {
+    alert(error);
+    return;
+  }
+
+  // Guardar en store
+  actualizarMobiliario(form);
+
+  // Actualizar estado inmediatamente
+  const updatedMobs = mobiliarios.map(m =>
+    m.codigo === form.codigo ? form : m
+  );
+
+  setMobiliarios(updatedMobs);
+  setFilteredMobiliarios(updatedMobs);
+
+  closeModal();
+};
+
+
+  // Activa o desactiva mantenimiento
   const toggleMantenimiento = (codigo) => {
     const mobiliario = buscarMobiliarioPorCodigo(codigo);
+
     const nuevoMantenimiento = mobiliario.mantenimiento === "Sí" ? "No" : "Sí";
     const nuevoEnUso = nuevoMantenimiento === "Sí" ? "No" : "Sí";
-    const updated = { ...mobiliario, mantenimiento: nuevoMantenimiento, enUso: nuevoEnUso };
+
+    const updated = {
+      ...mobiliario,
+      mantenimiento: nuevoMantenimiento,
+      enUso: nuevoEnUso
+    };
+
     actualizarMobiliario(updated);
+
     const updatedMobs = obtenerMobiliarios();
     setMobiliarios(updatedMobs);
     // Limpiar filtros para asegurar que el item actualizado se vea
@@ -124,29 +185,42 @@ function Inventario() {
     setFilteredMobiliarios(updatedMobs);
   };
 
+ // Marca un mobiliario como inservible
   const marcarInservible = (codigo) => {
-    if (window.confirm("¿Estás seguro de marcar este mobiliario como inservible? Esto deshabilitará las acciones de edición y mantenimiento.")) {
+    if (window.confirm("¿Estás seguro de marcar este mobiliario como inservible?")) {
+
       const mobiliario = buscarMobiliarioPorCodigo(codigo);
-      const updated = { ...mobiliario, estado: "Inservible", enUso: "No", mantenimiento: "No" };
+
+      const updated = {
+        ...mobiliario,
+        estado: "Inservible",
+        enUso: "No",
+        mantenimiento: "No"
+      };
+
       actualizarMobiliario(updated);
+
       const updatedMobs = obtenerMobiliarios();
       setMobiliarios(updatedMobs);
-      // Limpiar filtros para asegurar que el item actualizado se vea con botones deshabilitados
+
       setFiltros({
         estado: "",
         facultad: "",
         edificio: "",
         tipo: "",
       });
+
       setFilteredMobiliarios(updatedMobs);
     }
   };
 
+  // Renderizado del componente
   return (
     <>
       <HeaderComp />
       <main className="inventario-container">
         <h1>Inventario de Mobiliario</h1>
+        
         {/* 🔍 FILTROS */}
         <div className="filtros">
           <div className="campo">
