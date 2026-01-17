@@ -21,7 +21,7 @@ export function buscarMobiliarioPorCodigo(codigo) {
   const mobiliarios = obtenerMobiliarios();
   return mobiliarios.find((m) => m.codigo === codigo);
 }
-
+ 
 // Actualizar un mobiliario existente
 export function actualizarMobiliario(mobiliarioActualizado) {
   const mobiliarios = obtenerMobiliarios();
