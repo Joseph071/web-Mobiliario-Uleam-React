@@ -58,18 +58,18 @@ if (!regexCodigo.test(codigo.trim())) {
   // =========================
   // EDIFICIO
   // =========================
-  const regexEdificio = /^[A-Za-zÀ-ÿ0-9\s\-\.,#()]{2,50}$/;
-  if (!regexEdificio.test(edificio.trim())) {
-    return "Edificio inválido (2-50 caracteres)";
-  }
+const regexEdificio = /^[A-Za-zÀ-ÿ0-9\s\-,.#()]{2,50}$/;
+if (!regexEdificio.test(edificio.trim())) {
+  return "Edificio inválido (2-50 caracteres)";
+}
 
   // =========================
   // UBICACIÓN
   // =========================
-  const regexUbicacion = /^[A-Za-zÀ-ÿ0-9\s\-\.,#()]{3,100}$/;
-  if (!regexUbicacion.test(ubicacion.trim())) {
-    return "Ubicación inválida (3-100 caracteres)";
-  }
+const regexUbicacion = /^[A-Za-zÀ-ÿ0-9\s\-,.#()]{3,100}$/;
+if (!regexUbicacion.test(ubicacion.trim())) {
+  return "Ubicación inválida (3-100 caracteres)";
+}
 
   // =========================
   // RESPONSABLE
